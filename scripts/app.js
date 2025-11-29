@@ -248,3 +248,82 @@ if (servicesTitle) {
 
     observerServices.observe(servicesTitle);
 }
+
+/* ============================================================
+   08. AUTO ROTACIÓN DE SERVICIOS (How I Can Help You)
+============================================================ */
+
+let autoRotate = true; 
+let currentTabIndex = 0;
+const tabButtons = document.querySelectorAll(".service-tab");
+const contentPanels = document.querySelectorAll(".service-content");
+const rotateIntervalTime = 3000; // 3 segundos
+
+// --- Cambiar a un tab específico ---
+function switchToTab(index) {
+    tabButtons.forEach(t => t.classList.remove("active"));
+    contentPanels.forEach(c => c.classList.remove("active"));
+
+    tabButtons[index].classList.add("active");
+    const targetPanel = document.getElementById(tabButtons[index].dataset.tab);
+    targetPanel.classList.add("active");
+}
+
+// --- Rotación automática ---
+function autoRotateTabs() {
+    if (!autoRotate) return;
+
+    currentTabIndex = (currentTabIndex + 1) % tabButtons.length;
+    switchToTab(currentTabIndex);
+}
+
+let autoRotateInterval = setInterval(autoRotateTabs, rotateIntervalTime);
+
+// --- Cuando el usuario hace clic → detener rotación ---
+tabButtons.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+        autoRotate = false;
+        clearInterval(autoRotateInterval);
+        currentTabIndex = index; 
+    });
+});
+
+/* ============================================================
+   09. AUTO-ROTACIÓN DEL CAROUSEL 3D (Skills & Tools)
+============================================================ */
+
+// Estado de auto-rotación
+let autoRotateCarousel = true;
+const carouselIntervalTime = 3500; // 3.5 segundos por giro
+
+// Función para avanzar una tarjeta
+function autoRotateSkills() {
+    if (!autoRotateCarousel) return;
+
+    currentSkillIndex = (currentSkillIndex + 1) % totalSkills;
+    currentSkillRotation -= anglePerCard;
+    updateSkillView();
+}
+
+let autoCarouselInterval = setInterval(autoRotateSkills, carouselIntervalTime);
+
+// Cuando el usuario interactúa → detener auto-rotación
+if (skillsPrev && skillsNext) {
+    skillsPrev.addEventListener("click", () => {
+        autoRotateCarousel = false;
+        clearInterval(autoCarouselInterval);
+    });
+
+    skillsNext.addEventListener("click", () => {
+        autoRotateCarousel = false;
+        clearInterval(autoCarouselInterval);
+    });
+}
+
+// También detener si hace clic en un dot (indicador)
+document.querySelectorAll(".indicator").forEach(dot => {
+    dot.addEventListener("click", () => {
+        autoRotateCarousel = false;
+        clearInterval(autoCarouselInterval);
+    });
+});
