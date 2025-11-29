@@ -1,0 +1,1552 @@
+/* ============================================================
+   01. VARIABLES & BASE
+============================================================ */
+
+:root {
+    --green-accent: #03DD32;
+    --green-main: #5FA78A;
+    --blue-soft: #DCE5EB;
+    --white: #FFFFFF;
+    --gray-light: #E4E4E4;
+    --gray-dark: #1E1E1E;
+
+    --radius-card: 16px;
+    --shadow-soft: 0 10px 30px rgba(0,0,0,0.06);
+    --max-width: 1100px;
+
+    --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ============================================================
+   02. RESET LIGERO
+============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--gray-dark);
+    line-height: 1.6;
+
+    /* Variables iniciales animación fondo */
+    --y-0: 81%;
+    --x-0: 7%;
+    --c-0: hsla(125, 100%, 96%, 1);
+    --y-1: 52%;
+    --x-1: 39%;
+    --c-1: hsla(137, 93%, 64%, 1);
+    --c-2: hsla(142.2, 0%, 100%, 1);
+    --x-2: 5%;
+    --y-2: 1%;
+    --y-3: 29%;
+    --x-3: 11%;
+    --c-3: hsla(168, 71%, 47%, 1);
+    --c-4: hsla(106, 94%, 89%, 1);
+    --x-4: 90%;
+    --y-4: 50%;
+
+    background-color: hsla(161, 77%, 83%, 1);
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 2702 2702' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
+        radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)),
+        radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)),
+        radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)),
+        radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3)),
+        radial-gradient(circle at var(--x-4) var(--y-4), var(--c-4) var(--s-start-4), transparent var(--s-end-4));
+
+    background-blend-mode: overlay, normal, normal, normal, normal, normal;
+    animation: hero-gradient-animation 10s linear infinite alternate-reverse;
+}
+
+/* ============================================================
+   03. UTILIDADES
+============================================================ */
+
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 220px 0 !important;
+}
+
+.section-alt {
+    background-color: transparent !important;
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* ============================================================
+   04. SECCIÓN: TITULOS GENERALES
+============================================================ */
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+    animation: fadeUp 0.6s ease-out;
+}
+
+.section-header p {
+    max-width: 640px;
+    margin: 0 auto;
+    color: #1A1A1A;
+}
+
+/* ============================================================
+   05. BOTONES
+============================================================ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 32px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 1.15rem;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--green-accent);
+    color: var(--gray-dark);
+}
+
+.btn-primary:hover {
+    filter: brightness(0.95);
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--gray-dark);
+    border-color: var(--green-main);
+}
+
+.btn-outline:hover {
+    background-color: var(--green-main);
+    color: var(--white);
+}
+
+/* ============================================================
+   06. HEADER
+============================================================ */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--white);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+}
+
+.logo-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--green-accent), var(--green-main));
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--gray-dark);
+}
+
+.main-nav {
+    display: flex;
+    gap: 18px;
+    font-size: 0.95rem;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--gray-dark);
+    font-weight: 500;
+    position: relative;
+}
+
+.main-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background-color: var(--green-accent);
+    transition: width 0.2s ease;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+/* ============================================================
+   07. HERO SECTION
+============================================================ */
+
+#home.hero {
+    padding: 180px 0 150px !important;
+    background: transparent !important;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+    gap: 40px;
+    align-items: center;
+}
+
+.hero-tag {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--green-main);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    line-height: 1.25;
+}
+
+.highlight {
+    color: var(--green-main);
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    color: #1A1A1A;
+    margin-bottom: 20px;
+    max-width: 620px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+
+.hero-list {
+    list-style: none;
+    font-size: 1.15rem;
+}
+
+.hero-list li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 6px;
+}
+
+.hero-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--green-accent);
+}
+
+/* FOTO HERO */
+
+.hero-photo {
+    text-align: center;
+}
+
+.photo-placeholder {
+    width: 260px;
+    height: 260px;
+    border-radius: 24px;
+    border: 2px dashed var(--green-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 14px;
+    font-size: 0.95rem;
+    background-color: rgba(255,255,255,0.7);
+}
+
+.photo-caption {
+    font-size: 0.9rem;
+    color: #1A1A1A;
+    max-width: 260px;
+    margin: 0 auto;
+}
+
+/* ============================================================
+   08. SERVICES — MAIN LAYOUT
+============================================================ */
+
+.services-section {
+    padding: 260px 0 !important;
+}
+
+.services-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px;
+
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 50px;
+    align-items: stretch;
+}
+
+/* -------------------------------
+   08.1 SIDEBAR – TABS
+-------------------------------- */
+
+.services-sidebar {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(95,167,138,0.3);
+
+    padding: 25px;
+    border-radius: 20px;
+    position: sticky;
+    top: 100px;
+}
+
+.service-tab {
+    width: 100%;
+    padding: 18px 22px;
+
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 14px;
+
+    color: #1E1E1E;
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-align: left;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 14px;
+}
+
+.service-tab.active {
+    background: linear-gradient(135deg, var(--green-main), var(--green-accent));
+    color: var(--white);
+    border-color: var(--green-main);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.15);
+}
+
+.service-tab:hover:not(.active) {
+    background: rgba(95,167,138,0.15);
+    transform: translateX(5px);
+}
+
+/* -------------------------------
+   08.2 CONTENT AREA
+-------------------------------- */
+
+.services-content-area {
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(12px);
+
+    border-radius: 25px;
+    border: 1px solid rgba(95,167,138,0.25);
+
+    padding: 50px 60px 60px;
+    line-height: 1.85;
+}
+
+.service-content {
+    display: none;
+    animation: fadeUp 0.4s ease;
+}
+
+.service-content.active {
+    display: block;
+}
+
+.service-content h3 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--green-main);
+    margin-bottom: 120px;
+}
+
+.service-content p {
+    width: 100%;
+    max-width: 100%;
+
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #0F2E22;
+
+    line-height: 1.9;
+    margin-bottom: 40px;
+
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* ============================================================
+   09. DETAIL CARDS – (Inside each service)
+============================================================ */
+
+.detail-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 24px;
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+
+.detail-card {
+    padding: 30px 22px;
+
+    background: rgba(255,255,255,0.7);
+    border-radius: 16px;
+    border: 1px solid rgba(95,167,138,0.3);
+
+    height: 100%;
+    min-height: 110px;
+
+    transition: all 0.3s ease;
+}
+
+.detail-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--green-accent);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+}
+
+.detail-card h4 {
+    font-size: 1.1rem;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 0;
+    color: var(--green-main);
+}
+
+/* ============================================================
+   10. SERVICES TITLE ANIMATION
+============================================================ */
+
+.services-title-animated {
+    text-align: center;
+    margin: 0 auto 40px;
+    max-width: 900px;
+    padding: 10px 20px;
+}
+
+.services-title-animated h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--gray-dark);
+
+    opacity: 0;
+    transform: translateY(22px);
+}
+
+@keyframes servicesTitleSlide {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================
+   11. SKILLS & TOOLS – 3D CAROUSEL
+============================================================ */
+
+/* --- Root container with perspective --- */
+.skills-carousel-container {
+    position: relative;
+    height: 650px !important;
+
+    margin: 140px auto 160px !important;
+    perspective: 1200px;
+}
+
+/* --- Carousel wrapper (rotates on Y-axis) --- */
+.carousel-3d {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- INDIVIDUAL 3D CARDS --- */
+.skill-card-3d {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    width: 260px;
+    height: 360px;
+
+    margin-left: -130px;
+    margin-top: -180px;
+
+    padding: 32px;
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.55);
+    border: 2px solid rgba(95,167,138,0.35);
+    backdrop-filter: blur(4px);
+
+    box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+    cursor: pointer;
+
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: all 0.45s ease;
+
+    /* Prevent back face flickering */
+    backface-visibility: hidden;
+}
+
+/* --- glowing animated border --- */
+.skill-card-3d::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 22px;
+
+    background: linear-gradient(
+        45deg,
+        var(--green-main),
+        var(--green-accent),
+        var(--green-main)
+    );
+
+    background-size: 300% 300%;
+    animation: border-glow 3s linear infinite;
+
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: -1;
+}
+
+.skill-card-3d:hover::before {
+    opacity: 0.65;
+}
+
+@keyframes border-glow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Hover animation --- */
+.skill-card-3d:hover {
+    background: rgba(255,255,255,0.45);
+    transform: translateZ(20px) scale(1.04);
+
+    box-shadow:
+        0 28px 60px rgba(95,167,138,0.35),
+        inset 0 0 25px rgba(255,255,255,0.2);
+}
+
+/* --- 3D Positioning (6 cards → each 60° apart) --- */
+.skill-card-3d:nth-child(1) { transform: rotateY(0deg)   translateZ(330px); }
+.skill-card-3d:nth-child(2) { transform: rotateY(60deg)  translateZ(330px); }
+.skill-card-3d:nth-child(3) { transform: rotateY(120deg) translateZ(330px); }
+.skill-card-3d:nth-child(4) { transform: rotateY(180deg) translateZ(330px); }
+.skill-card-3d:nth-child(5) { transform: rotateY(240deg) translateZ(330px); }
+.skill-card-3d:nth-child(6) { transform: rotateY(300deg) translateZ(330px); }
+
+/* --- ICON --- */
+.skill-icon-3d {
+    width: 70px;
+    height: 70px;
+
+    background: linear-gradient(135deg, var(--green-main), var(--green-accent));
+    border-radius: 18px;
+
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: translateZ(20px);
+    box-shadow: 0 14px 30px rgba(95,167,138,0.35);
+}
+
+.skill-icon-3d img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: brightness(0.95);
+}
+
+/* --- DECORATIVE NUMBER --- */
+.skill-number {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+
+    font-size: 2.2rem;
+    font-weight: 900;
+
+    background: linear-gradient(135deg, var(--green-main), var(--green-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+    opacity: 0.25;
+}
+
+/* --- TITLE & DESCRIPTION --- */
+.skill-title-3d {
+    text-align: center;
+
+    font-size: 1.3rem;
+    font-weight: 700;
+
+    margin-bottom: 12px;
+    color: var(--gray-dark);
+
+    transform: translateZ(12px);
+}
+
+.skill-description-3d {
+    text-align: center;
+
+    font-size: 0.92rem;
+    color: #1A1A1A;
+    line-height: 1.55;
+}
+
+.tools-title-wave h2 {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #0F2E22;
+
+    /* ESTOS DOS SON CLAVE */
+    opacity: 0;
+    transform: translateY(20px);
+
+    animation: titleAppear 0.7s ease-out forwards;
+}
+/* Animación de aparición del título Tools I Use */
+@keyframes titleAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.wave-line {
+    position: relative;
+    width: 260px;
+    height: 8px;
+    margin: 20px auto 0;
+    overflow: hidden;
+}
+
+.wave-line::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -200px;
+
+    width: 200px;
+    height: 8px;
+
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        #03DD32 25%,
+        transparent 50%,
+        #03DD32 75%,
+        transparent 100%
+    );
+
+    background-size: 200px 8px;
+    animation: waveSlide 1.4s linear infinite;
+    opacity: 0.9;
+}
+
+@keyframes waveSlide {
+    from { transform: translateX(0); }
+    to { transform: translateX(400px); }
+}
+/* ============================================================
+   3D CAROUSEL CONTROLS
+============================================================ */
+
+.carousel-controls {
+    position: absolute;
+    bottom: -55px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 20px;
+    z-index: 10;
+}
+
+.carousel-btn {
+    width: 55px;
+    height: 55px;
+
+    background: rgba(255,255,255,0.35);
+    border: 2px solid rgba(95,167,138,0.4);
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background: linear-gradient(135deg, var(--green-main), var(--green-accent));
+    color: var(--white);
+    transform: scale(1.15);
+
+    box-shadow: 0 12px 30px rgba(95,167,138,0.35);
+}
+
+.carousel-btn:active {
+    transform: scale(0.95);
+}
+
+/* --- INDICATORS --- */
+.carousel-indicators {
+    position: absolute;
+    bottom: -95px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 10px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    background: rgba(95,167,138,0.35);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: var(--green-accent);
+    transform: scale(1.25);
+    box-shadow: 0 0 10px var(--green-accent);
+}
+
+/* ============================================================
+   12. ABOUT ME — CUSTOM LAYOUT
+============================================================ */
+
+.about-section-custom {
+    padding: 300px 0 !important;
+    background: transparent !important;
+    position: relative;
+}
+
+/* --- GRID PRINCIPAL --- */
+.about-custom-grid {
+    max-width: 1250px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    gap: 2.4rem;
+    align-items: center;
+
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ============================================================
+   12.1 ABOUT CONTENT (Texto + línea lateral animada)
+============================================================ */
+
+.about-custom-content {
+    position: relative;
+}
+
+/* Línea lateral animada */
+.about-custom-content::before {
+    content: "";
+    position: absolute;
+    left: -1.2rem;
+    top: 0;
+    bottom: 0;
+
+    width: 4px;
+    border-radius: 2px;
+
+    background: linear-gradient(
+        to bottom,
+        var(--green-main),
+        var(--green-accent),
+        transparent
+    );
+
+    animation: lineGlow 6s ease-in-out infinite alternate;
+}
+
+@keyframes lineGlow {
+    0%   { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+/* Títulos */
+.highlight-about {
+    color: var(--green-accent);
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.about-title {
+    font-size: clamp(2.6rem, 4vw, 3.8rem);
+    font-weight: 800;
+    margin-bottom: 1.4rem;
+    color: #1A1A1A;
+    line-height: 1.2;
+
+    animation: fadeUp .8s ease-out;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Párrafos */
+.about-custom-content p {
+    font-size: 1.25rem;
+    line-height: 1.8;
+
+    color: #1A1A1A;
+    text-align: justify;
+    text-justify: inter-word;
+
+    margin-bottom: 1.2rem;
+}
+
+/* ============================================================
+   12.2 ABOUT FEATURES (Características)
+============================================================ */
+
+.about-custom-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .9rem;
+
+    margin: 1.4rem 0;
+}
+
+.feature-item-about {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+
+    padding: 18px 22px;
+    border-radius: 16px;
+
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(95,167,138,0.35);
+    backdrop-filter: blur(6px);
+
+    font-size: 1.25rem;
+
+    transition: .3s ease;
+    animation: fadeUp .8s ease-out;
+}
+
+.feature-item-about:hover {
+    transform: translateX(6px);
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 8px 25px rgba(95,167,138,.25);
+}
+
+/* Icono */
+.feature-icon-about {
+    width: 52px;
+    height: 52px;
+
+    background: linear-gradient(135deg, var(--green-main), var(--green-accent));
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 6px 12px rgba(95,167,138,.35);
+}
+
+.feature-icon-about img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    filter: brightness(0) invert(0);
+}
+
+.feature-text-about {
+    font-weight: 600;
+    color: #1A1A1A;
+}
+
+/* ============================================================
+   12.3 ABOUT PHOTO & STATS
+============================================================ */
+
+.about-custom-visual {}
+
+/* Foto con borde degradado animado */
+.about-photo-card {
+    height: 420px;
+    position: relative;
+
+    border-radius: 22px;
+    overflow: hidden;
+
+    background: rgba(255,255,255,0.65);
+    border: 2px solid rgba(95,167,138,0.4);
+    backdrop-filter: blur(8px);
+
+    animation: fadeUp .9s ease-out;
+}
+
+.about-photo-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 22px;
+
+    background: linear-gradient(
+        135deg,
+        var(--green-main),
+        var(--green-accent),
+        var(--green-main)
+    );
+
+    background-size: 300% 300%;
+    animation: borderFlow 6s linear infinite;
+
+    z-index: -1;
+}
+
+@keyframes borderFlow {
+    0%   { background-position: 0% 50%;   }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%;   }
+}
+
+.about-photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* STAT BLOCKS */
+.about-stats {
+    margin-top: 1.3rem;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.stat-about:first-child {
+    grid-column: 1 / -1;
+}
+
+.stat-about {
+    padding: 1.4rem 1.6rem;
+    border-radius: 16px;
+
+    background: rgba(255,255,255,0.75);
+    border: 1px solid rgba(95,167,138,0.3);
+
+    text-align: center;
+
+    transition: .3s ease;
+    animation: fadeUp .9s ease-out;
+}
+
+.stat-about:hover {
+    transform: scale(1.05);
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 8px 25px rgba(95,167,138,.25);
+}
+
+/* Número animado */
+.stat-number {
+    font-size: 3rem;
+    font-weight: 900;
+
+    background: linear-gradient(135deg, var(--green-main), var(--green-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Etiqueta */
+.stat-label-about {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: #1A1A1A;
+}
+
+/* ============================================================
+   13. TIMELINE — FULL WORKFLOW SECTION
+============================================================ */
+
+.timeline-section {
+    padding: 240px 0;
+    position: relative;
+}
+
+/* — Títulos centrales — */
+.timeline-main-title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #1A1A1A;
+}
+
+.timeline-main-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+
+    opacity: 0.8;
+    max-width: 750px;
+
+    margin: 12px auto 60px auto;
+}
+
+/* ============================================================
+   13.1 TIMELINE CONTAINER
+============================================================ */
+
+.timeline-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* --- Línea central del timeline --- */
+.timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+
+    width: 4px;
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        var(--green-main) 10%,
+        var(--green-main) 90%,
+        transparent 100%
+    );
+
+    margin-top: 200px;
+    z-index: -1;
+}
+
+/* --- Progreso animado --- */
+.timeline-progress {
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    width: 4px;
+    height: 0;
+
+    background: linear-gradient(
+        to bottom,
+        var(--green-accent),
+        var(--green-main)
+    );
+
+    transform: translateX(-50%);
+    margin-top: 200px;
+
+    transition: height 0.3s ease;
+    box-shadow: 0 0 20px rgba(95,167,138,0.55);
+    z-index: 0;
+}
+
+/* ============================================================
+   13.2 TIMELINE ITEMS
+============================================================ */
+
+.timeline-item {
+    position: relative;
+    margin: 4rem 0;
+
+    opacity: 0;
+    transform: translateY(50px);
+
+    transition: all 0.8s ease;
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Lados alternados --- */
+.timeline-item:nth-child(odd) {
+    text-align: right;
+    padding-right: calc(50% + 3rem);
+}
+
+.timeline-item:nth-child(even) {
+    text-align: left;
+    padding-left: calc(50% + 3rem);
+}
+
+/* ============================================================
+   13.3 TIMELINE NODES (Números redondos)
+============================================================ */
+
+.timeline-node {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    width: 60px;
+    height: 60px;
+    transform: translate(-50%, -50%);
+
+    background: linear-gradient(135deg, var(--green-main), var(--green-accent));
+    border-radius: 50%;
+    border: 4px solid rgba(255,255,255,0.15);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    box-shadow: 0 0 20px rgba(95,167,138,0.55);
+    z-index: 3;
+}
+
+.timeline-node:hover {
+    transform: translate(-50%, -50%) scale(1.15);
+}
+
+/* Pulso animado */
+.timeline-node.active {
+    transform: translate(-50%, -50%) scale(1.25);
+    animation: pulse-node 2s infinite;
+}
+
+@keyframes pulse-node {
+    0%, 100% { box-shadow: 0 0 20px rgba(95,167,138,0.55); }
+    50%      { box-shadow: 0 0 50px rgba(95,167,138,0.55); }
+}
+
+/* ============================================================
+   13.4 TIMELINE CONTENT BOXES
+============================================================ */
+
+.timeline-content {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(95,167,138,0.35);
+
+    backdrop-filter: blur(25px);
+    border-radius: 25px;
+
+    padding: 2.5rem;
+
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+/* Flechas laterales */
+.timeline-content::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg) translateY(-50%);
+
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(95,167,138,0.35);
+}
+
+.timeline-item:nth-child(odd) .timeline-content::before {
+    right: -10px;
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+    left: -10px;
+}
+
+/* Textos internos */
+.timeline-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--green-main);
+}
+
+.timeline-description {
+    margin-top: 0.6rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* ============================================================
+   14. CONTACT SECTION
+============================================================ */
+
+#contact {
+    padding: 240px 0 !important;
+}
+
+/* GRID PRINCIPAL */
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 60px;
+}
+
+/* ============================================================
+   14.1 CONTACT INFO (Left Card)
+============================================================ */
+
+.contact-info,
+.contact-form-container {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(95,167,138,0.32);
+    border-radius: 28px;
+
+    padding: 45px;
+    backdrop-filter: blur(14px);
+
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+    animation: fadeUp 0.8s ease-out;
+}
+
+/* Títulos */
+.contact-info h3 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--green-main);
+    margin-bottom: 1.6rem;
+}
+
+/* Texto introductorio */
+.contact-info p {
+    font-size: 1.2rem;
+    color: #1A1A1A;
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+}
+
+/* LISTAS */
+.contact-details h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--green-accent);
+    margin-bottom: .7rem;
+}
+
+.contact-details ul {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.contact-details li {
+    font-size: 1.1rem;
+    color: #1E1E1E;
+    margin-bottom: .45rem;
+}
+
+/* Email */
+.contact-details a,
+.contact-email {
+    color: var(--green-main);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.contact-email:hover {
+    text-decoration: underline;
+    opacity: .8;
+}
+
+/* ============================================================
+   14.2 CONTACT FORM (Right Card)
+============================================================ */
+
+.form-group {
+    margin-bottom: 1.4rem;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 16px 22px;
+
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(95,167,138,0.25);
+    border-radius: 18px;
+
+    font-size: 1.1rem;
+    color: #1A1A1A;
+    font-family: inherit;
+
+    transition: all .3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    border-color: var(--green-main);
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 0 0 3px rgba(95,167,138,0.22);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: #7A7A7A;
+}
+
+/* Botón */
+.submit-btn {
+    width: 100%;
+    padding: 16px 32px;
+
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    border: none;
+    border-radius: 999px;
+
+    background: linear-gradient(135deg, var(--green-main), var(--green-accent));
+    color: white;
+
+    cursor: pointer;
+    transition: all .25s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(95,167,138,0.32);
+}
+
+/* ============================================================
+   15. FOOTER
+============================================================ */
+
+.site-footer {
+    padding: 16px 0;
+    border-top: 1px solid var(--gray-light);
+    background: transparent !important;
+}
+
+.footer-content {
+    text-align: center;
+    font-size: .85rem;
+    color: #1A1A1A;
+}
+
+/* ============================================================
+   16. MEDIA QUERIES
+============================================================ */
+
+@media (max-width: 900px) {
+
+    /* Contact Layout */
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    /* Hero */
+    .hero-content {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-photo {
+        order: -1;
+        margin-bottom: 10px;
+    }
+
+    /* Services */
+    .services-container {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+
+    .services-sidebar {
+        position: static;
+    }
+
+    /* 3D Carousel */
+    .skills-carousel-container {
+        height: 650px !important;
+    }
+
+    /* Grids */
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    /* Header (mobile simple) */
+    .main-nav {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .section { padding: 180px 0 !important; }
+    .photo-placeholder {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+/* ============================================================
+   17. GLOBAL ANIMATIONS
+============================================================ */
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes waveSlide {
+    from { transform: translateX(0); }
+    to   { transform: translateX(400px); }
+}
+
+/* ============================================================
+   18. CSS @property VARIABLES (Gradient Animated Background)
+============================================================ */
+
+/* Estas propiedades permiten animar los valores del fondo */
+@property --s-start-0 { syntax: '<percentage>'; inherits: false; initial-value: 16% }
+@property --s-end-0   { syntax: '<percentage>'; inherits: false; initial-value: 53% }
+@property --y-0       { syntax: '<percentage>'; inherits: false; initial-value: 81% }
+@property --x-0       { syntax: '<percentage>'; inherits: false; initial-value: 7% }
+
+@property --c-0       { syntax: '<color>'; inherits: false; initial-value: hsla(125,100%,96%,1) }
+
+@property --y-1       { syntax: '<percentage>'; inherits: false; initial-value: 52% }
+@property --x-1       { syntax: '<percentage>'; inherits: false; initial-value: 39% }
+
+@property --s-start-1 { syntax: '<percentage>'; inherits: false; initial-value: 6% }
+@property --s-end-1   { syntax: '<percentage>'; inherits: false; initial-value: 68% }
+
+@property --c-1       { syntax: '<color>'; inherits: false; initial-value: hsla(137,93%,64%,1) }
+@property --c-2       { syntax: '<color>'; inherits: false; initial-value: hsla(142,0%,100%,1) }
+
+@property --y-2       { syntax: '<percentage>'; inherits: false; initial-value: 1% }
+@property --s-start-2 { syntax: '<percentage>'; inherits: false; initial-value: 7% }
+@property --s-end-2   { syntax: '<percentage>'; inherits: false; initial-value: 84% }
+@property --x-2       { syntax: '<percentage>'; inherits: false; initial-value: 5% }
+
+@property --x-3       { syntax: '<percentage>'; inherits: false; initial-value: 11% }
+@property --y-3       { syntax: '<percentage>'; inherits: false; initial-value: 29% }
+
+@property --c-3       { syntax: '<color>'; inherits: false; initial-value: hsla(168,71%,47%,1) }
+
+@property --s-start-3 { syntax: '<percentage>'; inherits: false; initial-value: 8% }
+@property --s-end-3   { syntax: '<percentage>'; inherits: false; initial-value: 74% }
+
+@property --x-4       { syntax: '<percentage>'; inherits: false; initial-value: 90% }
+@property --y-4       { syntax: '<percentage>'; inherits: false; initial-value: 50% }
+
+@property --s-start-4 { syntax: '<percentage>'; inherits: false; initial-value: 2% }
+@property --s-end-4   { syntax: '<percentage>'; inherits: false; initial-value: 85% }
+
+@property --c-4       { syntax: '<color>'; inherits: false; initial-value: hsla(106,94%,89%,1) }
+
+/* Background animation keyframes */
+@keyframes hero-gradient-animation {
+    0% {
+        --s-start-0: 16%;
+        --s-end-0: 53%;
+        --c-2: hsla(142,0%,100%,1);
+    }
+
+    100% {
+        --s-start-0: 16%;
+        --s-end-0: 53%;
+        --c-2: hsla(142,0%,100%,1);
+    }
+}
