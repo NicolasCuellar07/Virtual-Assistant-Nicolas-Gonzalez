@@ -250,15 +250,15 @@ body {
 .hero-description {
     font-size: 1.25rem;
     color: #1A1A1A;
+    margin-top: 28px;
     margin-bottom: 20px;
     max-width: 620px;
 }
-
 .hero-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 16px; 
+    margin-bottom: 35px; 
     font-size: 1.05rem;
 }
 
@@ -789,7 +789,7 @@ body {
 ============================================================ */
 
 .about-section-custom {
-    padding: 300px 0 !important;
+     padding: 180px 0!important;
     background: transparent !important;
     position: relative;
 }
@@ -870,14 +870,14 @@ body {
 
 /* Párrafos */
 .about-custom-content p {
-    font-size: 1.25rem;
-    line-height: 1.8;
+    font-size: 1.35rem;
+    line-height: 1.95;
 
     color: #1A1A1A;
     text-align: justify;
     text-justify: inter-word;
 
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.9rem;
 }
 
 /* ============================================================
@@ -887,9 +887,8 @@ body {
 .about-custom-features {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: .9rem;
-
-    margin: 1.4rem 0;
+    gap: 1.4rem;
+    margin: 2.2rem 0;
 }
 
 .feature-item-about {
@@ -897,14 +896,14 @@ body {
     align-items: center;
     gap: .75rem;
 
-    padding: 18px 22px;
+    padding: 22px 26px;
     border-radius: 16px;
 
     background: rgba(255,255,255,0.65);
     border: 1px solid rgba(95,167,138,0.35);
     backdrop-filter: blur(6px);
 
-    font-size: 1.25rem;
+    font-size: 1.3rem;
 
     transition: .3s ease;
     animation: fadeUp .8s ease-out;
@@ -946,8 +945,6 @@ body {
 /* ============================================================
    12.3 ABOUT PHOTO & STATS
 ============================================================ */
-
-.about-custom-visual {}
 
 /* Foto con borde degradado animado */
 .about-photo-card {
@@ -1031,10 +1028,11 @@ body {
 .stat-number {
     font-size: 3rem;
     font-weight: 900;
-
     background: linear-gradient(135deg, var(--green-main), var(--green-accent));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 /* Etiqueta */
