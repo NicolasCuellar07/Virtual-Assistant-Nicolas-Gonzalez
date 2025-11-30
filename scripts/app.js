@@ -7,34 +7,6 @@ if (yearSpan) {
 }
 
 
-/* ============================================================
-   02. CONTACT FORM — Basic Demo Handler + Validation
-============================================================ */
-const contactForm = document.querySelector(".contact-form");
-
-if (contactForm) {
-    contactForm.addEventListener("submit", function (e) {
-        
-
-        const inputs = contactForm.querySelectorAll("input, textarea");
-        let isValid = true;
-
-        inputs.forEach(field => {
-            if (!field.value.trim()) {
-                isValid = false;
-                field.setCustomValidity("This field is required");
-                field.reportValidity();
-            } else {
-                field.setCustomValidity("");
-            }
-        });
-
-        if (isValid) {
-            alert("Thank you for your message. I will get back to you soon.");
-            contactForm.reset();
-        }
-    });
-}
 
 
 /* ============================================================
