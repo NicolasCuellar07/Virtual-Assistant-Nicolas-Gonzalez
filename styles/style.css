@@ -284,26 +284,56 @@ body {
 
 .hero-photo {
     text-align: center;
+     display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-left: 60px
 }
 
 .photo-placeholder {
-    width: 260px;
-    height: 260px;
-    border-radius: 24px;
-    border: 2px dashed var(--green-main);
+    width: 380px;
+    padding: 0;
+    overflow: hidden;
+
+    border-radius: 28px;
+    border: 3px solid rgba(95,167,138,0.55);
+    background: rgba(255,255,255,0.45);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+  
+    box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+
+
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto 14px;
-    font-size: 0.95rem;
-    background-color: rgba(255,255,255,0.7);
 }
 
+.hero-photo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
 .photo-caption {
-    font-size: 0.9rem;
-    color: #1A1A1A;
-    max-width: 260px;
-    margin: 0 auto;
+    font-size: 1.05rem;
+    font-weight: 600;
+
+    color: #0F2E22; /* Texto elegante, oscuro */
+    text-align: center;
+
+    margin-top: 16px;
+
+    /* SIN fondo, SIN borde, SIN blur */
+    background: none;
+    border: none;
+
+    /* estética limpia */
+    letter-spacing: 0.3px;
+    opacity: 0.85;
 }
 
 /* ============================================================
@@ -1441,6 +1471,7 @@ body {
     .hero-photo {
         order: -1;
         margin-bottom: 10px;
+        margin-left: 80px;
     }
 
     /* Services */
