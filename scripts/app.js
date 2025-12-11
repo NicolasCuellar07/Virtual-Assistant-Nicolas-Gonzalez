@@ -299,3 +299,14 @@ document.querySelectorAll(".indicator").forEach(dot => {
         clearInterval(autoCarouselInterval);
     });
 });
+
+/* Cerrar menú solo en móvil */
+const navLinks = document.querySelectorAll("#mainNav a");
+
+navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+        if (window.innerWidth <= 850) {
+            mainNav.classList.remove("open");
+        }
+    });
+});
