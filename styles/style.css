@@ -1775,3 +1775,25 @@ body {
         font-size: 2.2rem !important;
     }
 }
+
+/* 🔧 FIX — Fondo optimizado para móvil */
+@media (max-width: 768px) {
+
+    body {
+        /* Quitamos ruido y gradientes múltiples */
+        background-image: none !important;
+
+        /* Fondo simple coherente con tu marca */
+        background-color: #DCEFE5 !important;
+
+        /* Si quieres mantener un ligero degradado suave: */
+        background: linear-gradient(
+            180deg,
+            #E8F6EF 0%,
+            #CFEDE1 100%
+        ) !important;
+
+        /* Desactiva la animación en móvil */
+        animation: none !important;
+    }
+}
